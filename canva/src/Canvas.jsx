@@ -38,11 +38,9 @@ const Canvas = () => {
       }
     };
 
-    // Initial setup
     resizeCanvas();
     updateNetworkStatus();
 
-    // Event listeners
     window.addEventListener("resize", resizeCanvas);
     if (navigator.connection) {
       navigator.connection.addEventListener("change", updateNetworkStatus);
@@ -107,7 +105,7 @@ const Canvas = () => {
       context.lineCap = "round";
       context.lineJoin = "round";
       setIsDrawing(true);
-    }, true); // Critical task
+    }, true);
   };
 
   const draw = (e) => {
@@ -131,7 +129,7 @@ const Canvas = () => {
       const context = canvas.getContext("2d");
       context.closePath();
       setIsDrawing(false);
-    }, true); // Critical task
+    }, true);
   };
 
   const clearCanvas = () => {
@@ -139,7 +137,7 @@ const Canvas = () => {
       const canvas = canvasRef.current;
       const context = canvas.getContext("2d");
       context.clearRect(0, 0, canvas.width, canvas.height);
-    }, true); // Critical task
+    }, true);
   };
 
   // Network-aware optimization helpers
@@ -152,10 +150,10 @@ const Canvas = () => {
 
   const shouldSkipPoint = () => {
     if (connectionStatus.effectiveType.includes("2g")) {
-      return Math.random() > 0.7; // Skip 70% of points
+      return Math.random() > 0.7;
     }
     if (connectionStatus.effectiveType.includes("3g")) {
-      return Math.random() > 0.9; // Skip 10% of points
+      return Math.random() > 0.9;
     }
     return false;
   };
